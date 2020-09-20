@@ -1,0 +1,14 @@
+C:\Users\fuatsengul\Documents\GitHub\Mentor_PCB_BankPainter\obj\Debug\xPCB_BankPainter.csprojAssemblyReference.cache
+C:\Users\fuatsengul\Documents\GitHub\Mentor_PCB_BankPainter\obj\Debug\Interop.CellEditorAddinLib.dll
+C:\Users\fuatsengul\Documents\GitHub\Mentor_PCB_BankPainter\obj\Debug\Interop.MGCPCB.dll
+C:\Users\fuatsengul\Documents\GitHub\Mentor_PCB_BankPainter\obj\Debug\Interop.MGCPCBAutomationLicensing.dll
+C:\Users\fuatsengul\Documents\GitHub\Mentor_PCB_BankPainter\obj\Debug\Interop.MGCPCBReleaseEnvironmentLib.dll
+C:\Users\fuatsengul\Documents\GitHub\Mentor_PCB_BankPainter\obj\Debug\Interop.MGCSDDOUTPUTWINDOWLib.dll
+C:\Users\fuatsengul\Documents\GitHub\Mentor_PCB_BankPainter\obj\Debug\xPCB_BankPainter.csproj.ResolveComReference.cache
+C:\Users\fuatsengul\Documents\GitHub\Mentor_PCB_BankPainter\obj\Debug\xPCB_BankPainter.csproj.CoreCompileInputs.cache
+C:\Users\fuatsengul\Documents\GitHub\Mentor_PCB_BankPainter\bin\Debug\xPCB_BankPainter.exe.config
+C:\Users\fuatsengul\Documents\GitHub\Mentor_PCB_BankPainter\bin\Debug\xPCB_BankPainter.exe
+C:\Users\fuatsengul\Documents\GitHub\Mentor_PCB_BankPainter\bin\Debug\xPCB_BankPainter.pdb
+C:\Users\fuatsengul\Documents\GitHub\Mentor_PCB_BankPainter\obj\Debug\Interop.MGCPCBPartsEditor.dll
+C:\Users\fuatsengul\Documents\GitHub\Mentor_PCB_BankPainter\obj\Debug\xPCB_BankPainter.exe
+C:\Users\fuatsengul\Documents\GitHub\Mentor_PCB_BankPainter\obj\Debug\xPCB_BankPainter.pdb

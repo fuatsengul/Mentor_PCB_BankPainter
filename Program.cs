@@ -65,6 +65,7 @@ namespace xPCB_BankPainter
                 if (addin.Name == "Message Window")
                 {
                     Console.WriteLine(addin.Control);
+                    addin.Visible = true;
                     msgWnd = addin.Control;
                 }
             }
