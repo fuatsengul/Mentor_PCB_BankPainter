@@ -6,6 +6,7 @@ using MGCPCB;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Microsoft.VisualBasic;
+using System.Windows.Forms;
 
 namespace xPCB_BankPainter
 {
@@ -26,34 +27,60 @@ namespace xPCB_BankPainter
         static void Main( string[] args )
         {
             #region Instance Connection Code
-            MGCPCBReleaseEnvironmentLib.IMGCPCBReleaseEnvServer _server =
-                (MGCPCBReleaseEnvironmentLib.IMGCPCBReleaseEnvServer)Activator.CreateInstance(
-                    Marshal.GetTypeFromCLSID(
-                        new Guid("44983CB8-19B0-4695-937A-6FF0B74ECFC5")
-                    )
-                );
-
-
-            _server.SetEnvironment("");
-            string VxVersion = _server.sddVersion;
-            string strSDD_HOME = _server.sddHome;
-            int length = strSDD_HOME.IndexOf("SDD_HOME");
-            strSDD_HOME = strSDD_HOME.Substring(0, length).Replace("\\", "\\\\") + "SDD_HOME";
-            _server.SetEnvironment(strSDD_HOME);
-            string progID = _server.ProgIDVersion;
-
-            MGCPCB.Application pcbApp = (MGCPCB.Application)Interaction.GetObject(null, "MGCPCB.Application." + progID);
-            if (pcbApp == null)
+            try
             {
-                System.Windows.Forms.MessageBox.Show("Could not found active Xpedition or PADSPro Application");
-                System.Environment.Exit(1);
+                MGCPCBReleaseEnvironmentLib.IMGCPCBReleaseEnvServer _server =
+                    (MGCPCBReleaseEnvironmentLib.IMGCPCBReleaseEnvServer)Activator.CreateInstance(
+                        Marshal.GetTypeFromCLSID(
+                            new Guid("44983CB8-19B0-4695-937A-6FF0B74ECFC5")
+                        )
+                    );
+
+
+                _server.SetEnvironment("");
+                string VxVersion = _server.sddVersion;
+                string strSDD_HOME = _server.sddHome;
+                int length = strSDD_HOME.IndexOf("SDD_HOME");
+                strSDD_HOME = strSDD_HOME.Substring(0, length).Replace("\\", "\\\\") + "SDD_HOME";
+                _server.SetEnvironment(strSDD_HOME);
+                string progID = _server.ProgIDVersion;
+
+                object[,] _releases = (object[,])_server.GetInstalledReleases();
+                dynamic pcbApp = null;
+
+                for (int i = 1; i < _releases.Length / 4; i++)
+                {
+                    string _com_version = Convert.ToString(_releases[i, 0]);
+                    try
+                    {
+                        pcbApp = Interaction.GetObject(null, "MGCPCB.Application." + _com_version);
+
+                        pcbDoc = pcbApp.ActiveDocument;
+                        dynamic licApp = Interaction.CreateObject("MGCPCBAutomationLicensing.Application." + _com_version);
+                        int _token = licApp.GetToken(pcbDoc.Validate(0));
+                        pcbDoc.Validate(_token);
+
+                        break;
+                    }
+                    catch (Exception m)
+                    {
+                    }
+                }
+
+
+                if (pcbApp == null)
+                {
+                    System.Windows.Forms.MessageBox.Show("Could not found active Xpedition or PADSPro Application");
+                    System.Environment.Exit(1);
+                }
+
+                
+
             }
-
-            pcbDoc = pcbApp.ActiveDocument;
-            MGCPCBAutomationLicensing.Application licApp = new MGCPCBAutomationLicensing.Application();
-            int _token = licApp.GetToken(pcbDoc.Validate(0));
-            pcbDoc.Validate(_token);
-
+            catch (Exception m)
+            {
+                MessageBox.Show(m.Message + "\r\n" + m.Source + "\r\n" + m.StackTrace);
+            }
             #endregion
 
             #region Work Code
